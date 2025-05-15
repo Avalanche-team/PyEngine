@@ -1,3 +1,6 @@
 import pygame as pg
-import moderngl as mgl
+from OpenGL.GL import *
 
+
+import sys
+import os

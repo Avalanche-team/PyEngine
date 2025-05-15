@@ -1,2 +1,4 @@
 pygame-ce
-moderngl
+pyOpenGL
+numpy
+numba
