@@ -1,4 +1,4 @@
 pygame-ce
-pyOpenGL
+moderngl
 numpy
 numba

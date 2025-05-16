@@ -1,5 +1,5 @@
 import pygame as pg
-from OpenGL.GL import *
+import moderngl as mgl
 
 
 import sys

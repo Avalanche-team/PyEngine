@@ -7,6 +7,7 @@ class Engine:
         self.debug = debug
 
         self.active_window = Window(self)
+        self.ctx = mgl.create_context()
 
         self.scene_manager = SceneManager(self)
 

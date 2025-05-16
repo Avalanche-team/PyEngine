@@ -70,10 +70,9 @@ class Window:
         pass
 
     def render(self):
-        glClearColor(self.window_data[WINDOW_BACKGROUND_COLOUR][0],
+        self.engine.ctx.clear(self.window_data[WINDOW_BACKGROUND_COLOUR][0],
                        self.window_data[WINDOW_BACKGROUND_COLOUR][1],
                        self.window_data[WINDOW_BACKGROUND_COLOUR][2],
                        self.window_data[WINDOW_BACKGROUND_COLOUR][3])
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
         pg.display.flip()
