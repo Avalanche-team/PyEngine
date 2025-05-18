@@ -8,30 +8,29 @@ class SceneManager:
         self.scenes = {}
         self.selected_scene = None
 
+    def on_create(self):
+        pass
+
+    def on_event(self, event):
+        pass
+
     def add_scene(self,name,scene):
-        if isinstance(scene,Scene):
-            self.scenes[name] = scene
-            scene.engine = self.engine
-            scene.on_create()
+        scene.engine = self.engine
+        scene.on_create()
 
-            if not self.selected_scene:
-                self.selected_scene = name
+        if self.selected_scene is None:
+            self.selected_scene = name
 
-    def get_scene(self,name) -> Scene:
-        return self.scenes.get(name,None)
-
-    def on_event(self,event):
-        if self.scenes.get(self.selected_scene,False):
-            self.scenes[self.selected_scene].on_event(event)
+        self.scenes[name] = scene
 
     def on_update(self):
-        if self.scenes.get(self.selected_scene,False):
+        if self.selected_scene:
             self.scenes[self.selected_scene].on_update()
 
     def on_render(self):
-        if self.scenes.get(self.selected_scene, False):
+        if self.selected_scene:
             self.scenes[self.selected_scene].on_render()
 
     def on_close(self):
-        if self.scenes.get(self.selected_scene,False):
-            self.scenes[self.selected_scene].on_close()
+        for scene in self.scenes.values():
+            scene.on_close()

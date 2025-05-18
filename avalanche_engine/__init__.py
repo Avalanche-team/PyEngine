@@ -18,10 +18,12 @@ from .game_objects.game_object import GameObject
 #                       COMPONENTS
 #----------------------------------------------------------
 from .components.component import Component
+from .components.mesh import Mesh
 
 #----------------------------------------------------------
 #                         UTILS
 #----------------------------------------------------------
+from .renderer.shapes import *
 
 __all__ = [
     "Window",
@@ -44,5 +46,7 @@ __all__ = [
 
     "GameObject",
 
-    "Component"
+    "Component",
+    "Mesh",
+    "get_square_mesh"
 ]

@@ -11,6 +11,7 @@ class Engine:
 
         self.scene_manager = SceneManager(self)
 
+
     def event_handler(self):
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -23,8 +24,10 @@ class Engine:
         self.active_window.update()
 
     def render(self):
+        self.active_window.start_window()
         self.scene_manager.on_render()
         self.active_window.render()
+
 
     def close(self):
         self.scene_manager.on_close()
