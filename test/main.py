@@ -36,6 +36,8 @@ class Test(Scene):
     def on_update(self):
         super().on_update()
 
+        self.c += self.engine.dt / 10000
+
         # Update color and blend factor
         self.mat.blend = 0.7
         self.mat.colour = (self.c, self.c, self.c, 1.0)  # Gradually change color

@@ -5,6 +5,8 @@ class Texture(Component):
     def __init__(self, texture_path):
         super().__init__()
 
+        self.type = "TEXTURE"
+
         self.texture = pg.image.load(texture_path).convert_alpha()
         self.texture = pg.transform.flip(self.texture, False, True)
         self.image_data = pg.image.tobytes(self.texture, "RGBA", True)

@@ -38,6 +38,9 @@ class Shader(GameObject):
         super().__init__()
         self.program = None
 
+        self.colour = (1.0,0.0,1.0,1.0)
+        self.blend = 0.6
+
     def on_create(self):
         try:
             self.program = self.engine.ctx.program(
@@ -48,12 +51,8 @@ class Shader(GameObject):
             print("Error compiling shader program:")
             print(e)
 
-        # Make sure to bind texture slot 0 for the shader
-        self.program["u_texture"] = 0
-
     def on_update(self):
-        # This will be updated every frame
-        self.program["u_texture"] = 0  # Ensure texture binding is kept
+        super().on_update()
 
     def on_close(self):
         self.program.release()
