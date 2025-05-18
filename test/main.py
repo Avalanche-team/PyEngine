@@ -1,5 +1,5 @@
 from avalanche_engine import *
-
+import pygame as pg
 
 class Test(Scene):
     def __init__(self):
@@ -37,6 +37,12 @@ class Test(Scene):
         super().on_update()
 
         self.c += self.engine.dt / 10000
+
+        key = pg.key.get_pressed()
+        if key[pg.K_w]:
+            self.camera.position += self.camera.forward * 1
+        if key[pg.K_s]:
+            self.camera.position -= self.camera.forward * 1
 
         # Update color and blend factor
         self.mat.blend = 0.7

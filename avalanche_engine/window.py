@@ -69,6 +69,9 @@ class Window:
     def update(self):
         pass
 
+    def get_size(self):
+        return pg.display.get_surface().get_size()
+
     def start_window(self):
         self.engine.ctx.clear(self.window_data[WINDOW_BACKGROUND_COLOUR][0],
                        self.window_data[WINDOW_BACKGROUND_COLOUR][1],

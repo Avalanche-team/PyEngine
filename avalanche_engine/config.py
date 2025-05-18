@@ -3,7 +3,8 @@ import moderngl as mgl
 
 import numpy as np
 import numba as nb
-import pyglm as glm
 
+from pyrr import *
 import sys
 import os
+import math

@@ -1,6 +1,5 @@
-pygame-ce
 moderngl
-pyglm
-
 numpy
-numba
+pygame
+PyGLM
+pywavefront

@@ -1,5 +1,5 @@
-from avalanche_engine.game_objects.shader import Shader
-
+from ..game_objects.shader import Shader
+from ..game_objects.camera import Camera
 
 class Scene:
     def __init__(self):
@@ -9,6 +9,7 @@ class Scene:
         self.game_objects_to_create = []
 
         self.shader = None
+        self.camera = None
 
         self.initialised = False
 
@@ -20,6 +21,9 @@ class Scene:
 
         self.shader = Shader()
         self.add_game_object(self.shader)
+
+        self.camera = Camera()
+        self.add_game_object(self.camera)
 
         for game_object in self.game_objects_to_create:
             self.add_game_object(game_object)

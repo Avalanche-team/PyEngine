@@ -11,9 +11,12 @@ class Shader(GameObject):
     
     out vec2 f_texcoord;
     
+    uniform mat4 u_view;
+    uniform mat4 u_proj;
+    
     void main() {
         f_texcoord = in_texcoord;
-        gl_Position = vec4(in_position, 1.0);
+        gl_Position = u_proj * u_view *vec4(in_position, 1.0);
     }
     """
 
