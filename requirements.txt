@@ -1,4 +1,6 @@
 pygame-ce
 moderngl
+pyglm
+
 numpy
 numba

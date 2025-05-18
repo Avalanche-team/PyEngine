@@ -14,6 +14,16 @@ def get_square_mesh():
         -0.5, 0.5, 0.0,  # Top left
     ]
 
+    texture_coords = [
+        0.0,0.0,
+        1.0,0.0,
+        1.0,1.0,
+        0.0,0.0,
+        1.0,1.0,
+        0.0,1.0
+    ]
+
     return Mesh(
-        positions=positions
+        positions=positions,
+        texture_coord=texture_coords
     )

@@ -1,5 +1,4 @@
-from ..config import *
-from ..renderer.shader import Shader
+from avalanche_engine.game_objects.shader import Shader
 
 
 class Scene:

@@ -19,6 +19,8 @@ from .game_objects.game_object import GameObject
 #----------------------------------------------------------
 from .components.component import Component
 from .components.mesh import Mesh
+from .components.material import Material
+from .components.texture import Texture
 
 #----------------------------------------------------------
 #                         UTILS
@@ -48,5 +50,7 @@ __all__ = [
 
     "Component",
     "Mesh",
-    "get_square_mesh"
+    "Material",
+    "Texture",
+    "get_square_mesh",
 ]

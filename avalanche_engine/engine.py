@@ -11,6 +11,14 @@ class Engine:
 
         self.scene_manager = SceneManager(self)
 
+        self.clock = pg.Clock()
+
+        self.ctx.enable(mgl.BLEND)
+        self.ctx.blend_func = mgl.SRC_ALPHA, mgl.ONE_MINUS_SRC_ALPHA
+
+        self.dt = 0
+        self.time = 0
+
 
     def event_handler(self):
         for event in pg.event.get():
@@ -20,6 +28,8 @@ class Engine:
             self.scene_manager.on_event(event)
 
     def update(self):
+        self.dt = self.clock.tick(60)
+
         self.scene_manager.on_update()
         self.active_window.update()
 
