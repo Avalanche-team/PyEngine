@@ -1,15 +1,20 @@
+from ..components.transform import Transform
 from ..config import *
 from ..components.component import Component
+from ..components.transform import Transform
 
 class GameObject:
     def __init__(self):
         self.engine = None
         self.scene = None
+        self.initialised = False
 
         self.components = {}
         self.components_to_create = {}
 
-        self.initialised = False
+        self.transform = Transform()
+        self.add_component(self.transform)
+
 
     def on_create(self):
         self.initialised = True

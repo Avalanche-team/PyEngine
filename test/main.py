@@ -14,47 +14,55 @@ class Test(Scene):
     def on_create(self):
         super().on_create()
 
-        # Create a square mesh
-        self.square = get_square_mesh()
 
-        s = load_obj_model("test/rep_inf_ep3trooper.obj")
-        print(s)
+
+        s = load_obj_model("test/wanwan.obj")
 
         # Create Material and set color and blending
         self.mat = Material()
-        self.mat.colour = (self.c, self.c, self.c, 1.0)
 
         # Create Texture
-        self.texture = Texture("test/rep_inf_ep3trooper.png")
+        self.texture = Texture("test/ob_wan_body.png")
+        self.mat.set_diffuse_map(self.texture)
 
-        # Create GameObject and add components
+        # Set different textures or materials for each object
+        self.texture1 = Texture("test/ob_wan_body.png")
+        self.mat1 = Material()
+        self.mat1.set_diffuse_map(self.texture1)
+
+        self.texture2 = Texture("test/ob_wan_body.png")
+        self.mat2 = Material()
+        self.mat2.set_diffuse_map(self.texture2)
+
+        # Create first GameObject with different material
         self.obj = GameObject()
         self.obj.add_component(s)
-        self.obj.add_component(self.mat)
-        self.obj.add_component(self.texture)
+        self.obj.add_component(self.mat1)
+        self.obj.transform.position.x = 2
+
+        # Create second GameObject with different material
+        self.obj2 = GameObject()
+        self.obj2.add_component(s)
+        self.obj2.add_component(self.mat2)
+        self.obj2.transform.position.x = 1
 
         # Add GameObject to scene
-        self.add_game_object(self.obj)
+        self.add_game_object(self.obj2)
+
+        print(f"Obj position: {self.obj.transform.position.x}")  # Debug obj position
+        print(f"Obj2 position: {self.obj2.transform.position.x}")  # Debug obj2 position
 
     def on_update(self):
         super().on_update()
 
-        self.c += self.engine.dt / 10000
+        self.obj.transform.position.x += 1 * self.engine.dt
 
-        # Update color and blend factor
-        self.mat.blend = 0.7
-        self.mat.colour = (self.c, self.c, self.c, 1.0)  # Gradually change color
 
 
 if __name__ == '__main__':
     window_prop = window_data
     window_prop[WINDOW_ICON] = "test/Icon.png"
-    window_prop[WINDOW_TITLE] = "Test Engine 123123"
-
-    log_to_console(LogLevel.INFO,"Hello World INFO")
-    log_to_console(LogLevel.WARNING,"Hello World Warning",bold=True)
-    log_to_console(LogLevel.ERROR,"Hello World ERROR")
-    log_to_console(LogLevel.DEBUG,"Hello World DEBUG",bold=True)
+    window_prop[WINDOW_TITLE] = "Test Engine"
 
     engine = Engine(debug=True)
 

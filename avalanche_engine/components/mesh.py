@@ -173,7 +173,7 @@ class Mesh(Component):
 
     def on_render(self):
         if self.should_render and self.vao:
-            self.vao.render(mode=mgl.TRIANGLES)
+            self.vao.render(mode=self.engine.draw_method)
 
     def on_close(self):
         self.vao.release()

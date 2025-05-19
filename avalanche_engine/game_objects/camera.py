@@ -7,7 +7,7 @@ class Camera(GameObject):
 
         self.fov = 50
         self.near = 0.1
-        self.far = 100
+        self.far = 1000
         self.speed = 10
         self.sensitivity = 0.1
 

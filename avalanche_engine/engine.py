@@ -1,3 +1,5 @@
+import sys
+
 from .config import *
 from .window import Window
 from .scenes.scene_manager import SceneManager
@@ -5,6 +7,8 @@ from .scenes.scene_manager import SceneManager
 class Engine:
     def __init__(self,debug=False):
         self.debug = debug
+
+        self.debug = True if "--debug" in sys.argv else False
 
         self.active_window = Window(self)
         self.ctx = mgl.create_context()
@@ -19,6 +23,8 @@ class Engine:
         self.ctx.enable(mgl.CULL_FACE)
         self.ctx.enable(mgl.DEPTH_TEST)
 
+        self.draw_method = mgl.TRIANGLES
+
         self.dt = 0
         self.time = 0
 
@@ -27,6 +33,11 @@ class Engine:
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 self.active_window.running = False
+
+            if event.type == pg.KEYDOWN:
+                key = pg.key.get_pressed()
+                if key[pg.K_F1]:
+                    self.draw_method = mgl.TRIANGLES if self.draw_method == mgl.LINES else mgl.LINES
 
             self.scene_manager.on_event(event)
 

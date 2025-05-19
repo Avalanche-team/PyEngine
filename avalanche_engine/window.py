@@ -16,7 +16,7 @@ window_data = {
     WINDOW_WIDTH: 1080,
     WINDOW_HEIGHT: 720,
     WINDOW_TITLE: "Avalanche Engine",
-    WINDOW_VSYNC: True,
+    WINDOW_VSYNC: False,
     WINDOW_BACKGROUND_COLOUR:(0.1,0.4,0.8,1.0),
     WINDOW_POSITION_X: None,
     WINDOW_POSITION_Y: None,

@@ -15,14 +15,26 @@ YELLOW = "\033[33m"
 RED = "\033[31m"
 PURPLE = "\033[35m"
 RESET = "\033[0m"
-BOLD = "\33[1m"
+
+BOLD = "\033[1m"
+ITALIC = "\033[3m"
+UNDERLINE = "\033[4m"
+CROSS_OUT = "\033[9m"
+
+DIM = "\033[2m"
+NORMAL = "\033[22m"
+TEXT_COLOUR_REVERSE = "\033[7m"
+INVISIBLE = "\033[8m"
 
 
-def _get_colour_text(level, bold=False):
+def _get_colour_text(level, *args):
     temp_text = ""
 
-    if bold:
-        temp_text += BOLD
+    temp_text += BOLD if "bold" in args else ""
+    temp_text += DIM if "dim" in args else ""
+    temp_text += UNDERLINE if "underline" in args else ""
+    temp_text += ITALIC if "italic" in args else ""
+    temp_text += CROSS_OUT if "cross-out" in args else ""
 
     match level:
         case LogLevel.INFO:
@@ -37,10 +49,10 @@ def _get_colour_text(level, bold=False):
     return temp_text
 
 
-def log_to_console(level: LogLevel, message: str, extra_info: bool = True,bold:bool=False):
+def log_to_console(level: LogLevel, message: str, *args, extra_info: bool = True):
     text = ""
 
-    text += _get_colour_text(level,bold)
+    text += _get_colour_text(level,*args)
     if extra_info:
         text += f"[{datetime.now().strftime("%H-%M-%S")}] "
 

@@ -6,13 +6,15 @@ class Component:
 
         self.type = "UNDEFINED"
 
+        self.initialised = False
+
         self.engine = None
         self.scene = None
         self.game_object = None
 
     def on_create(self):
         """this function will be called when this class is to be initialised"""
-        pass
+        self.initialised = True
 
     def on_event(self,event):
         pass

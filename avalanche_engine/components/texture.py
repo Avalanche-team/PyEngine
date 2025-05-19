@@ -9,15 +9,17 @@ class Texture(Component):
 
         self.texture = pg.image.load(texture_path).convert_alpha()
         self.texture = pg.transform.flip(self.texture, False, True)
+
         self.image_data = pg.image.tobytes(self.texture, "RGBA", True)
         self.width, self.height = self.texture.get_size()
+        self.channels = 4
 
-        self.engine_texture = None
 
-    def on_create(self):
-        self.engine_texture = self.engine.ctx.texture((self.width, self.height), 4, self.image_data)
-        self.engine_texture.build_mipmaps()
+    def get_size(self):
+        return self.width,self.height
 
-    def on_update(self):
-        if self.engine_texture:
-            self.engine_texture.use(location=0)  # Needs to be bound every frame
+    def get_channels(self):
+        return self.channels
+
+    def get_image_data(self):
+        return self.image_data

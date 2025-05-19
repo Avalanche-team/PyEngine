@@ -4,7 +4,7 @@ from avalanche_engine.game_objects.game_object import GameObject
 
 class Shader(GameObject):
     VERTEX_SHADER_SRC = """
-    #version 330
+    #version 330 core
 
     in vec3 in_position;
     in vec2 in_texcoord;
@@ -13,10 +13,12 @@ class Shader(GameObject):
     
     uniform mat4 u_view;
     uniform mat4 u_proj;
+    uniform mat4 u_model;  
     
     void main() {
         f_texcoord = in_texcoord;
-        gl_Position = u_proj * u_view *vec4(in_position, 1.0);
+    
+        gl_Position = u_proj * u_view * u_model * vec4(in_position, 1.0);
     }
     """
 
@@ -27,13 +29,18 @@ class Shader(GameObject):
     
     in vec2 f_texcoord;
     
-    uniform sampler2D u_texture;
-    uniform vec4 u_colour;
-    uniform float u_blend;
-
+    uniform sampler2D u_texture;  // Diffuse texture, or your first texture
+    uniform vec4 u_colour;        // The color to mix with
+    uniform float u_blend;        // Blend factor between texture and color
+    
     void main() {
-        vec4 tex = texture(u_texture, f_texcoord);
-        f_color = mix(tex, u_colour, u_blend);  // Mix texture with color
+    float gamma = 2.2;
+
+    vec4 textureColour = texture(u_texture, f_texcoord);
+    vec4 colour = mix(textureColour, u_colour, u_blend);
+
+    // Remove gamma correction to test
+    f_color = colour;  
     }
     """
 
