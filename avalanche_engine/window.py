@@ -73,10 +73,7 @@ class Window:
         return pg.display.get_surface().get_size()
 
     def start_window(self):
-        self.engine.ctx.clear(self.window_data[WINDOW_BACKGROUND_COLOUR][0],
-                       self.window_data[WINDOW_BACKGROUND_COLOUR][1],
-                       self.window_data[WINDOW_BACKGROUND_COLOUR][2],
-                       self.window_data[WINDOW_BACKGROUND_COLOUR][3])
+        self.engine.ctx.clear(*self.window_data[WINDOW_BACKGROUND_COLOUR])
 
     def render(self):
         pg.display.flip()

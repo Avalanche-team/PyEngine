@@ -41,9 +41,6 @@ class Shader(GameObject):
         super().__init__()
         self.program = None
 
-        self.colour = (1.0,0.0,1.0,1.0)
-        self.blend = 0.6
-
     def on_create(self):
         try:
             self.program = self.engine.ctx.program(

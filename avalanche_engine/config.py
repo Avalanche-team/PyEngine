@@ -1,10 +1,9 @@
 import pygame as pg
-import moderngl as mgl
-
 import numpy as np
 import numba as nb
+import moderngl as mgl
 
-from pyrr import *
-import sys
+from pyglm import glm
+
 import os
-import math
+import sys

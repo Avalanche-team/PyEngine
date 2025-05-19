@@ -16,6 +16,8 @@ class Engine:
         self.ctx.enable(mgl.BLEND)
         self.ctx.blend_func = mgl.SRC_ALPHA, mgl.ONE_MINUS_SRC_ALPHA
 
+        self.ctx.enable(mgl.CULL_FACE)
+
         self.dt = 0
         self.time = 0
 
@@ -28,7 +30,7 @@ class Engine:
             self.scene_manager.on_event(event)
 
     def update(self):
-        self.dt = self.clock.tick(60)
+        self.dt = self.clock.tick(60) / 1000
 
         self.scene_manager.on_update()
         self.active_window.update()
