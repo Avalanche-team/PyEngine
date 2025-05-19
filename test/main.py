@@ -51,6 +51,11 @@ if __name__ == '__main__':
     window_prop[WINDOW_ICON] = "test/Icon.png"
     window_prop[WINDOW_TITLE] = "Test Engine 123123"
 
+    log_to_console(LogLevel.INFO,"Hello World INFO")
+    log_to_console(LogLevel.WARNING,"Hello World Warning",bold=True)
+    log_to_console(LogLevel.ERROR,"Hello World ERROR")
+    log_to_console(LogLevel.DEBUG,"Hello World DEBUG",bold=True)
+
     engine = Engine(debug=True)
 
     engine.scene_manager.add_scene("test",Test())

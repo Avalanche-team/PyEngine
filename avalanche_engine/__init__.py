@@ -26,6 +26,7 @@ from .components.texture import Texture
 #                         UTILS
 #----------------------------------------------------------
 from .renderer.shapes import *
+from .utils.logger import LogLevel, log_to_console
 
 __all__ = [
     "Window",
@@ -54,4 +55,7 @@ __all__ = [
     "Material",
     "Texture",
     "get_square_mesh",
+
+    "LogLevel",
+    "log_to_console"
 ]
