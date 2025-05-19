@@ -50,7 +50,9 @@ class Window:
             display=0,
             vsync=self.window_data[WINDOW_VSYNC]
             )
+
         pg.display.set_caption(self.window_data[WINDOW_TITLE])
+        self.title = self.window_data[WINDOW_TITLE]
 
         if self.window_data[WINDOW_ICON]:
             icon = pg.image.load(self.window_data[WINDOW_ICON]).convert_alpha()

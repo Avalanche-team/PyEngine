@@ -17,6 +17,7 @@ class Engine:
         self.ctx.blend_func = mgl.SRC_ALPHA, mgl.ONE_MINUS_SRC_ALPHA
 
         self.ctx.enable(mgl.CULL_FACE)
+        self.ctx.enable(mgl.DEPTH_TEST)
 
         self.dt = 0
         self.time = 0
@@ -30,7 +31,10 @@ class Engine:
             self.scene_manager.on_event(event)
 
     def update(self):
-        self.dt = self.clock.tick(60) / 1000
+        self.dt = self.clock.tick(0) / 1000
+
+        if self.debug:
+            pg.display.set_caption(f"{self.active_window.title} | FPS: [{self.clock.get_fps() :.0f}]")
 
         self.scene_manager.on_update()
         self.active_window.update()

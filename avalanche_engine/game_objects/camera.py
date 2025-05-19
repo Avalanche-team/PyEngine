@@ -34,8 +34,6 @@ class Camera(GameObject):
     def move(self):
         velocity = self.speed * self.scene.engine.dt
         keys = pg.key.get_pressed()
-        print(self.position)
-
         if keys[pg.K_w]:
             self.position += self.forward * velocity
         if keys[pg.K_s]:

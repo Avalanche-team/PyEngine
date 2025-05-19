@@ -17,16 +17,19 @@ class Test(Scene):
         # Create a square mesh
         self.square = get_square_mesh()
 
+        s = load_obj_model("test/rep_inf_ep3trooper.obj")
+        print(s)
+
         # Create Material and set color and blending
         self.mat = Material()
         self.mat.colour = (self.c, self.c, self.c, 1.0)
 
         # Create Texture
-        self.texture = Texture("test/Icon.png")
+        self.texture = Texture("test/rep_inf_ep3trooper.png")
 
         # Create GameObject and add components
         self.obj = GameObject()
-        self.obj.add_component(self.square)
+        self.obj.add_component(s)
         self.obj.add_component(self.mat)
         self.obj.add_component(self.texture)
 
@@ -38,12 +41,6 @@ class Test(Scene):
 
         self.c += self.engine.dt / 10000
 
-        key = pg.key.get_pressed()
-        if key[pg.K_w]:
-            self.camera.position += self.camera.forward * 1
-        if key[pg.K_s]:
-            self.camera.position -= self.camera.forward * 1
-
         # Update color and blend factor
         self.mat.blend = 0.7
         self.mat.colour = (self.c, self.c, self.c, 1.0)  # Gradually change color
@@ -54,7 +51,7 @@ if __name__ == '__main__':
     window_prop[WINDOW_ICON] = "test/Icon.png"
     window_prop[WINDOW_TITLE] = "Test Engine 123123"
 
-    engine = Engine()
+    engine = Engine(debug=True)
 
     engine.scene_manager.add_scene("test",Test())
 
