@@ -37,7 +37,7 @@ class Engine:
             if event.type == pg.KEYDOWN:
                 key = pg.key.get_pressed()
                 if key[pg.K_F1]:
-                    self.draw_method = mgl.TRIANGLES if self.draw_method == mgl.LINES else mgl.LINES
+                    self.draw_method = mgl.TRIANGLES if self.draw_method == mgl.LINE_STRIP else mgl.LINE_STRIP
 
             self.scene_manager.on_event(event)
 
