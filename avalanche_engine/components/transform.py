@@ -18,6 +18,7 @@ class Transform(Component):
 
 
     def on_create(self):
+        super().on_create()
         self.m_model = self.get_model_matrix()
 
     def get_model_matrix(self):
@@ -32,10 +33,4 @@ class Transform(Component):
         model = glm.scale(model, self.scale)
 
         return model
-
-    def on_update(self):
-        # Update the model matrix if there was any change
-        self.m_model = self.get_model_matrix()
-
-        self.scene.shader.program["u_model"].write(self.m_model)
 

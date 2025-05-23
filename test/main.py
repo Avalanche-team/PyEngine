@@ -1,61 +1,49 @@
 from avalanche_engine import *
-import pygame as pg
+import math
 
 class Test(Scene):
     def __init__(self):
         super().__init__()
 
-        self.square = None
         self.mat = None
         self.texture = None
         self.obj = None
-        self.c = 0
+
+        self.player_1_x = 0
 
     def on_create(self):
         super().on_create()
 
-
-
-        s = load_obj_model("test/wanwan.obj")
-
-        # Create Material and set color and blending
+        self.texture = Texture("test/rep_inf_ep3trooper.png")
         self.mat = Material()
-
-        # Create Texture
-        self.texture = Texture("test/ob_wan_body.png")
         self.mat.set_diffuse_map(self.texture)
 
-        # Set different textures or materials for each object
-        self.texture1 = Texture("test/ob_wan_body.png")
-        self.mat1 = Material()
-        self.mat1.set_diffuse_map(self.texture1)
 
-        self.texture2 = Texture("test/ob_wan_body.png")
-        self.mat2 = Material()
-        self.mat2.set_diffuse_map(self.texture2)
+        mesh = load_obj_model("test/rep_inf_ep3trooper.obj")
 
-        # Create first GameObject with different material
         self.obj = GameObject()
-        self.obj.add_component(s)
-        self.obj.add_component(self.mat1)
-        self.obj.transform.position.x = 2
+        self.obj.add_component(mesh)
+        self.obj.add_component(self.mat)
 
-        # Create second GameObject with different material
         self.obj2 = GameObject()
-        self.obj2.add_component(s)
-        self.obj2.add_component(self.mat2)
-        self.obj2.transform.position.x = 1
+        self.obj2.add_component(mesh)
+        self.obj2.add_component(self.mat)
 
-        # Add GameObject to scene
+        self.obj2.transform.position.z = 2
+
+
+        self.add_game_object(self.obj)
         self.add_game_object(self.obj2)
-
-        print(f"Obj position: {self.obj.transform.position.x}")  # Debug obj position
-        print(f"Obj2 position: {self.obj2.transform.position.x}")  # Debug obj2 position
 
     def on_update(self):
         super().on_update()
+        self.player_1_x +=  self.engine.dt
 
-        self.obj.transform.position.x += 1 * self.engine.dt
+        self.obj.transform.rotation.y = self.player_1_x
+        self.obj.transform.position.y = math.sin(self.player_1_x)
+
+        self.obj2.transform.rotation.z = self.player_1_x
+
 
 
 

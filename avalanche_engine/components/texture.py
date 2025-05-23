@@ -14,6 +14,8 @@ class Texture(Component):
         self.width, self.height = self.texture.get_size()
         self.channels = 4
 
+        self.on_create()
+
 
     def get_size(self):
         return self.width,self.height

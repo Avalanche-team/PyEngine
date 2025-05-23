@@ -1,3 +1,4 @@
+from ..components.transform import Transform
 from ..game_objects.shader import Shader
 from ..game_objects.camera import Camera
 
@@ -43,8 +44,12 @@ class Scene:
             component.on_update()
 
     def on_render(self):
-        for component in self.game_object:
-            component.on_render()
+        for obj in self.game_object:
+            transform = obj.transform
+
+            if transform :
+                self.shader.program["u_model"].write(transform.get_model_matrix())
+                obj.on_render()
 
     def on_close(self):
         for component in self.game_object:

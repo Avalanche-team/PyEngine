@@ -1,4 +1,6 @@
 from ..config import *
+from ..utils.logger import log_to_console, LogLevel
+
 
 class Component:
     def __init__(self):
@@ -15,6 +17,7 @@ class Component:
     def on_create(self):
         """this function will be called when this class is to be initialised"""
         self.initialised = True
+        log_to_console(LogLevel.INFO,f"Created {self.type}","bold","underline",extra_info=True)
 
     def on_event(self,event):
         pass
@@ -28,4 +31,4 @@ class Component:
         pass
 
     def on_close(self):
-        pass
+        log_to_console(LogLevel.WARNING, f"Destroyed {self.type}", "bold", "underline", extra_info=True)

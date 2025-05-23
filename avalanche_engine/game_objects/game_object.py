@@ -32,6 +32,11 @@ class GameObject:
         else:
             self.components_to_create[component.type] = component
 
+    def get_component(self, component_type):
+        for comp in self.components:
+            if isinstance(comp, component_type) or (hasattr(comp, 'type') and comp.type == component_type):
+                return comp
+        return None
 
     def on_update(self):
         for component in self.components.values():

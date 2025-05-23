@@ -6,9 +6,9 @@ from .scenes.scene_manager import SceneManager
 
 class Engine:
     def __init__(self,debug=False):
-        self.debug = debug
 
         self.debug = True if "--debug" in sys.argv else False
+        self.debug = debug
 
         self.active_window = Window(self)
         self.ctx = mgl.create_context()
@@ -43,6 +43,7 @@ class Engine:
 
     def update(self):
         self.dt = self.clock.tick(0) / 1000
+        self.time = self.clock.get_time()
 
         if self.debug:
             pg.display.set_caption(f"{self.active_window.title} | FPS: [{self.clock.get_fps() :.0f}]")
@@ -58,6 +59,7 @@ class Engine:
 
     def close(self):
         self.scene_manager.on_close()
+        self.ctx.release()
         self.active_window.quit()
 
     def run(self):

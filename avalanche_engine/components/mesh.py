@@ -160,6 +160,8 @@ class Mesh(Component):
         self.should_render = True
 
     def on_create(self):
+        super().on_create()
+        
         positions = np.array(self.positions, dtype='f4').reshape(-1, 3)
         texcoords = np.array(self.texture_coord, dtype='f4').reshape(-1, 2)
 
@@ -176,4 +178,5 @@ class Mesh(Component):
             self.vao.render(mode=self.engine.draw_method)
 
     def on_close(self):
+        super().on_close()
         self.vao.release()
