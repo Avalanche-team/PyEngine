@@ -43,7 +43,7 @@ class Engine:
 
     def update(self):
         self.dt = self.clock.tick(0) / 1000
-        self.time = self.clock.get_time()
+        self.time = self.clock.get_rawtime()
 
         if self.debug:
             pg.display.set_caption(f"{self.active_window.title} | FPS: [{self.clock.get_fps() :.0f}]")

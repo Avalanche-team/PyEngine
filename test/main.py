@@ -1,59 +1,45 @@
 from avalanche_engine import *
 import math
 
-class Test(Scene):
+class TestWorld(Scene):
     def __init__(self):
         super().__init__()
 
-        self.mat = None
-        self.texture = None
-        self.obj = None
-
-        self.player_1_x = 0
+        self.trooper = None
 
     def on_create(self):
         super().on_create()
-
+        self.mesh = load_obj_model("test/rep_inf_ep3trooper.obj")
         self.texture = Texture("test/rep_inf_ep3trooper.png")
+
         self.mat = Material()
         self.mat.set_diffuse_map(self.texture)
+        self.mat.blend = 0.25
 
+        self.trooper = GameObject()
+        self.trooper.add_component(self.mat)
+        self.trooper.add_component(self.mesh)
 
-        mesh = load_obj_model("test/rep_inf_ep3trooper.obj")
+        self.add_game_object(self.trooper)
 
-        self.obj = GameObject()
-        self.obj.add_component(mesh)
-        self.obj.add_component(self.mat)
-
-        self.obj2 = GameObject()
-        self.obj2.add_component(mesh)
-        self.obj2.add_component(self.mat)
-
-        self.obj2.transform.position.z = 2
-
-
-        self.add_game_object(self.obj)
-        self.add_game_object(self.obj2)
+        self.player_y = 0
 
     def on_update(self):
         super().on_update()
-        self.player_1_x +=  self.engine.dt
+        self.player_y += self.engine.dt * 2
 
-        self.obj.transform.rotation.y = self.player_1_x
-        self.obj.transform.position.y = math.sin(self.player_1_x)
-
-        self.obj2.transform.rotation.z = self.player_1_x
-
-
+        self.trooper.transform.position.y = math.sin(self.player_y)
+        self.trooper.transform.rotation.y = self.player_y
 
 
 if __name__ == '__main__':
-    window_prop = window_data
-    window_prop[WINDOW_ICON] = "test/Icon.png"
-    window_prop[WINDOW_TITLE] = "Test Engine"
+
+    window_data[WINDOW_TITLE] = "Test Game 1234"
+    window_data[WINDOW_ICON] = "test/Icon.png"
+    window_data[WINDOW_BACKGROUND_COLOUR] = (0.8, 0.8, 1.0)
 
     engine = Engine(debug=True)
 
-    engine.scene_manager.add_scene("test",Test())
+    engine.scene_manager.add_scene("test",TestWorld())
 
     engine.run()

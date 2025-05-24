@@ -29,17 +29,15 @@ class Shader(GameObject):
     
     in vec2 f_texcoord;
     
-    uniform sampler2D u_texture;  // Diffuse texture, or your first texture
+    uniform sampler2D u_texture;  // Diffuse texture
     uniform vec4 u_colour;        // The color to mix with
     uniform float u_blend;        // Blend factor between texture and color
     
     void main() {
-    float gamma = 2.2;
 
     vec4 textureColour = texture(u_texture, f_texcoord);
     vec4 colour = mix(textureColour, u_colour, u_blend);
 
-    // Remove gamma correction to test
     f_color = colour;  
     }
     """
