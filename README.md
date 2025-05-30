@@ -1,4 +1,6 @@
 # PyEngine
+
+![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/Avalanche-team/PyEngine?utm_source=oss&utm_medium=github&utm_campaign=Avalanche-team%2FPyEngine&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
  
 ### steps to create a window
 ```python
